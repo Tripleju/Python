@@ -18,8 +18,15 @@ for i in range(N):
 print(', '.join(a)) """
 
 #3
-N=int(input())
-a=[]
-for i in range(N):
-    a.append((-3)**i)
-print(*a, sep=', ') 
+# N=int(input())
+# a=[]
+# for i in range(N):
+#     a.append((-3)**i)
+# print(*a, sep=', ') 
+
+#4
+# n = int(input("Введите число:"))
+# m = 1
+# for i in range(n):
+# print(m,end=' ')
+# m *=-3
