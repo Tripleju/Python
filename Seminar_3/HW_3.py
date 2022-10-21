@@ -53,6 +53,18 @@
 # - 3 -> 11
 # - 2 -> 10
 
+# my_num=int(input('введите число: '))
+# def dec_to_bin(num):
+#     bin_list=[]
+#     while num!=0:
+#         rem=num%2
+#         bin_list.append(rem)
+#         num=num//2
+#     bin_list.reverse()   
+#     print("".join(map(str,bin_list)))
+
+# dec_to_bin(my_num)
+
 
 
 # 5**. Задайте число. Составьте список чисел Фибоначчи, в том числе для отрицательных индексов.
