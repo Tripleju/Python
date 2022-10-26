@@ -97,6 +97,9 @@ out
 # N=int(input('Введите количество чисел в выборке: '))
 
 # def uniq_elem(n:int):
+#     if n<0:
+#         print('Negative value of the number of numbers!')
+#         return []
 #     first_list=[]
 #     uniq_list=[]
 #     for i in range(n):
