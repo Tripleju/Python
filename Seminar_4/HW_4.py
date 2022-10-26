@@ -37,7 +37,7 @@ in
 650
 out
 [2, 5, 5, 13] """
-
+#1 выводятся только уникальные делители простые, не весь список
 # my_num=int(input('Enter number: '))
 # def simple_prod(num):
 #     list_simple=[]
@@ -51,6 +51,24 @@ out
 #                 list_simple.append(i)
 #     print(list_simple)
 # simple_prod(my_num)
+#2 верное решение
+# from math import sqrt
+# my_num=int(input('Enter number: '))
+# def prime_factors(num):
+#     prfactors_list=[]
+#     while num%2==0:
+#         prfactors_list.append(2)
+#         num=num/2
+
+#     for i in range(3,int(sqrt(num))+1,2):
+#         while num%i==0:
+#             prfactors_list.append(i)
+#             num=num/i
+#     if num>2:
+#         prfactors_list.append(num)
+#     print(prfactors_list)
+
+# prime_factors(my_num)
 
 
 # 3. Задайте последовательность чисел. Напишите программу, которая выведет список неповторяющихся элементов 
@@ -74,11 +92,21 @@ out
 [6, 2, 3, 0, 9] """
 
 
-# 4.* Задана натуральная степень k. Сформировать случайным образом список коэффициентов (значения от 0 до 100)
-#  многочлена и записать в файл многочлен степени k.
-# Пример:
-# - k=2 => 2*x² + 4*x + 5 = 0 или x² + 5 = 0 или 10*x² = 0
+# from random import randrange
 
+# N=int(input('Введите количество чисел в выборке: '))
 
-# 5.** Даны два файла, в каждом из которых находится запись многочлена. Задача - сформировать файл, 
-# содержащий сумму многочленов.
+# def uniq_elem(n:int):
+#     first_list=[]
+#     uniq_list=[]
+#     for i in range(n):
+#         first_list.append(randrange(0,2*n))
+#     print(first_list)
+#     for j in range(n):
+#         count_el=first_list.count(first_list[j])
+#         if count_el==1:
+#             uniq_list.append(first_list[j])
+#     print(uniq_list)
+
+# uniq_elem(N)
+
