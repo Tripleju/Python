@@ -1,0 +1,6 @@
+from itertools import product
+
+
+print((2*'n'))
+
+list(zip(str_lett, list_num))
