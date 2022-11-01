@@ -6,8 +6,25 @@ out
 {'А': ['Алина'], 'Б': ['Бибочка'], 'И': ['Иван', 'Илья'], 'М': ['Марина', 'Мария'], 'П': ['Петр', 'Петр']} """
 
 #3 get setdefault
+from curses import keyname
 
 
+def name_dict():
+    name_list=[]
+    name='1'
+    char=[]
+    while name!='':
+        name=input('Enter the name: ')
+        name_list.append(name)
+        char=[x[:1] for x in name_list]
+    name_list.pop()
+    char.pop()
+    # dict_name={ch for ch in char: n for n in name_list}
+    dict_name=dict.fromkeys(char,[y for y in name_list if name_list[:1]==dict.get()])
+    return dict_name
+
+
+print(name_dict())
 
 
 
