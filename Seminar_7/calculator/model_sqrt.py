@@ -1,16 +1,17 @@
 # from math import pow
 x=0
 y=0
-
+d=0
 def init(a,b):
     global x
     global y
+    global d
     x=a
     y=b
 
-def do_it():
+def do_it(d):
     return x**(1/y)
 
-def symb():
+def symb(d):
     symbol='sqrt degree'
     return symbol

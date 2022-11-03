@@ -1,17 +1,18 @@
 x=0
 y=0
-
+d=0
 def init(a,b):
     global x
     global y
+    global d
     x=a
     y=b
     # title='mult'
 
 
-def do_it():
+def do_it(d):
     return x*y
 
-def symb():
+def symb(d):
     symbol='*'
     return symbol
