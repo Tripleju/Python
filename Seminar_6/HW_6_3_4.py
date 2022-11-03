@@ -6,29 +6,60 @@ out
 {'А': ['Алина'], 'Б': ['Бибочка'], 'И': ['Иван', 'Илья'], 'М': ['Марина', 'Мария'], 'П': ['Петр', 'Петр']} """
 
 #3 get setdefault
-from curses import keyname
 
+#1 вариант 1 мой, не до конца работащий
 
-def name_dict():
-    name_list=[]
-    name='1'
-    char=[]
-    while name!='':
-        name=input('Enter the name: ')
-        name_list.append(name)
-        char=[x[:1] for x in name_list]
-    name_list.pop()
-    char.pop()
-    # dict_name={ch for ch in char: n for n in name_list}
-    dict_name=dict.fromkeys(char,[y for y in name_list if name_list[:1]==dict.get()])
-    return dict_name
+# def name_dict():
+#     name_list=[]
+#     name='1'
+#     char=[]
+#     while name!='':
+#         name=input('Enter the name: ')
+#         name_list.append(name)
+#         char=[x[:1] for x in name_list]
+#     name_list.pop()
+#     char.pop()
+#     # dict_name={ch for ch in char: n for n in name_list}
+#     dict_name=dict.fromkeys(char,[y for y in name_list if name_list[:1]==dict.get()])
+#     return dict_name
 
+# print(name_dict())
 
-print(name_dict())
+#2 семинар
 
+# def thesaurus(*args):
+#     names_dict={}
+#     for i in sorted(args):
+#         letter=i[0]
+#         if letter not in names_dict:
+#             names_dict[letter]=[i]
+#         names_dict[letter]+=[i]
 
+#     return names_dict
 
+# print(thesaurus("Иван", "Мария", "Петр", "Илья", "Марина", "Петр", "Алина", "Бибочка"))
+#=> {'А': ['Алина', 'Алина'], 'Б': ['Бибочка', 'Бибочка'], 'И': ['Иван', 'Иван', 'Илья'], 'М': ['Марина', 
+# 'Марина', 'Мария'], 'П': ['Петр', 'Петр', 'Петр']}
 
+#3 вариант
+# from itertools import groupby
+# def thesaurus(*args):
+#     if "" not in args:
+#         return {ch:list(names) for ch, names in groupby(sorted(args),key=lambda i: i[0]) if ch }
+#     return "Error"
+
+# print(thesaurus("Иван", "Мария", "Петр", "Илья", "Марина", "Петр", "Алина", "Бибочка"))
+#=> {'А': ['Алина'], 'Б': ['Бибочка'], 'И': ['Иван', 'Илья'], 'М': ['Марина', 'Мария'], 'П': ['Петр', 'Петр']}
+
+#4 вариант
+
+# def thesaurus(*args):
+#     if "" not in args:
+#         return {ch[0]: list(filter(lambda el: el.startswith(ch[0]),args)) for ch in sorted(args)}
+#     return "Error"
+
+# print(thesaurus("Иван", "Мария", "Петр", "Илья", "Марина", "Петр", "Алина", "Бибочка"))
+#=> {'А': ['Алина'], 'Б': ['Бибочка'], 'И': ['Иван', 'Илья'], 'М': ['Мария', 'Марина'], 'П': ['Петр', 'Петр']}
 
 # 4. * Функция принимает в качестве аргументов строки в формате «Имя Фамилия», возвращает словарь, 
 # ключи — первые буквы фамилий, значения — словари, реализованные по схеме предыдущего задания.
@@ -41,3 +72,14 @@ out
 {'С': {'А': ['Анна Савельева', 'Антон Серов'], 'И': ['Иван Сергеев', 'Инна Серова']},
  'А': {'Б': ['Борис Аркадьев'], 'П': ['Павел Анисимов', 'Петр Алексеев']}, 'И': {'И': ['Илья Иванов']}, 
  'В': {'Ю': ['Юнона Ветрякова']}} """
+
+# def thesaurus_adv(*args):
+#     s_n_sort={}
+#     for s_n in args:
+#         s_n_sort.setdefault(s_n.split()[1][0],{}).setdefault(s_n.split()[0][0],[]).append(s_n)
+#     return s_n_sort
+
+# print(thesaurus_adv("Иван Сергеев", "Инна Серова", "Петр Алексеев",
+# "Илья Иванов", "Анна Савельева", "Юнона Ветрякова",
+# "Борис Аркадьев", "Антон Серов", "Павел Анисимов"))
+#=> {'С': {'И': ['Иван Сергеев', 'Инна Серова'], 'А': ['Анна Савельева', 'Антон Серов']}, 'А': {'П': ['Петр Алексеев', 'Павел Анисимов'], 'Б': ['Борис Аркадьев']}, 'И': {'И': ['Илья Иванов']}, 'В': {'Ю': ['Юнона Ветрякова']}}
