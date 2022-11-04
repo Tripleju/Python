@@ -9,6 +9,14 @@ def init(a,b):
     y=b
     # title='mult'
 
+def init_complex(r1,im1,r2,im2):
+    global x
+
+    global y
+
+    global d
+    x=complex(r1,im1)
+    y=complex(r2,im2)
 
 def do_it(d):
     return x*y

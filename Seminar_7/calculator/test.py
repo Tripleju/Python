@@ -9,4 +9,42 @@ def ch_operation():
     print(operation)
     return dict_models.get(operation)
 
-print(ch_operation())
+# print(ch_operation())
+
+x=0
+y=0
+d=0
+def init(a,c,b,f):
+    global x
+    # global xj
+    global y
+    # global yj
+    global d
+
+    x=complex(a,c)
+    y=complex(b,f)
+    return x,y
+
+
+def get_complex_value():
+    real_part1=int(input('Enter 1 real part: '))
+    im_part1=int(input('Enter 1 imaginary part: '))
+    real_part2=int(input('Enter 2 real part: '))
+    im_part2=int(input('Enter 2 imaginary part: '))
+    print(f"value 1= {complex(real_part1,im_part1)}")
+    print(f"value 2= {complex(real_part2,im_part2)}")
+    return real_part1,im_part1,real_part2,im_part2
+CV=get_complex_value()
+# print(CV)
+# print(CV[2])
+value1=init(CV[0],CV[1],CV[2],CV[3])[0]
+value2=init(CV[0],CV[1],CV[2],CV[3])[1]
+# print(init(CV[0],CV[1],CV[2],CV[3])[0])
+
+print(value1)
+print(value2)
+
+def do_it():
+    return x+y
+
+print(do_it())

@@ -10,8 +10,16 @@ def init(a,b):
     y=b
 
 
-import user_interface as us_int
+# import user_interface as us_int
 
+def init_complex(r1,im1,r2,im2):
+    global x
+
+    global y
+
+    # global d
+    x=complex(r1,im1)
+    y=complex(r2,im2)
 
 def do_it(d):
 

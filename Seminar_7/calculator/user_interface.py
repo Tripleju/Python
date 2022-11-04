@@ -23,7 +23,7 @@ def get_value():
 def welcome():
     print("Calculator welcomes you!")
     print(" Working with:\n 1 - Rational \n 2 - Complex\n 0 - exit")
-    return input("Please choose option: ")
+    return int(input("Please, choose the option: "))
 
 def ch_operation():
     operation=int(input("Choose operation:\n 1 - sum\n 2 - sub\n 3 - mult\n 4 - div\n 5 - pow\n 6 - sqrt\n 0 - previouse menu\n" ))
@@ -35,6 +35,19 @@ def ch_div_op():
     operation1=int(input("Choose operation:\n 1 - / \n 2 - // \n 3 - % \n" ))
     dict_div=dict([(1,'/'),(2,'//'),(3,'%')])
     return dict_div.get(operation1)
+
+def get_complex_value():
+    real_part1=int(input('Enter 1 real part: '))
+    im_part1=int(input('Enter 1 imaginary part: '))
+    real_part2=int(input('Enter 2 real part: '))
+    im_part2=int(input('Enter 2 imaginary part: '))
+    print(f"value 1= {complex(real_part1,im_part1)}")
+    print(f"value 2= {complex(real_part2,im_part2)}")
+    return real_part1,im_part1,real_part2,im_part2
+
+    
+
+
 
 
 

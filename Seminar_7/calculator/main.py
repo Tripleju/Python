@@ -9,26 +9,47 @@ import model_sqrt as model_sqrt
 import model_sub as model_sub
 import sys
 import logg as l
+import compl as compl
 
 def button_click():
-    # us_int.welcome()
-    # if us_int.welcome()==0:
-        # sys.exit('Good bye')
-    # else:
+    welcome=us_int.welcome()
+    if welcome==0:
+        print("Good bye, see you later!")
+        exit()
+    elif welcome==1:
+            model=us_int.ch_operation()
+            if model!='break':
+                if model==model_div:
+                    d=us_int.ch_div_op()
+                else:
+                    d=''
+                value_a=us_int.get_value()
+                value_b=us_int.get_value()
+                model.init(value_a, value_b)
+                result=model.do_it(d)
+                sym=model.symb(d)
+                us_int.view_data(result, 'result')
+                l.result_logger(value_a,value_b,sym,result)
+            else: button_click()
+
+    elif welcome==2:
         model=us_int.ch_operation()
         if model!='break':
             if model==model_div:
-                d=us_int.ch_div_op()
+                d='/'
             else:
                 d=''
-            value_a=us_int.get_value()
-            value_b=us_int.get_value()
-            model.init(value_a, value_b)
+            compl_values=us_int.get_complex_value()
+            # value_a=model.init_complex(compl_values[0],compl_values[1],compl_values[2],compl_values[3])[0]
+            # value_b=model.init_complex(compl_values[0],compl_values[1],compl_values[2],compl_values[3])[1]
+            model.init_complex(compl_values[0],compl_values[1],compl_values[2],compl_values[3])
             result=model.do_it(d)
             sym=model.symb(d)
             us_int.view_data(result, 'result')
-            l.result_logger(value_a,value_b,sym,result)
+            # l.result_logger(value_a,value_b,sym,result)
         else: button_click()
-
+    else:
+        print("Wrong values")
+        exit()
 button_click()
 
