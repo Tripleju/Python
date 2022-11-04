@@ -51,5 +51,37 @@ def button_click():
     else:
         print("Wrong values")
         exit()
-button_click()
-
+# button_click()
+#другой вариант записи
+def button_click1():
+    welcome=us_int.welcome()
+    if welcome==0:
+        print("Good bye, see you later!")
+        exit()
+    elif welcome==1 or welcome==2:
+            model=us_int.ch_operation()
+            if model!='break':
+                if model==model_div:
+                    if welcome==1:
+                        d=us_int.ch_div_op()
+                    elif welcome==2:
+                        d='/'
+                else:
+                    d=''
+                if welcome==1:
+                    value_a=us_int.get_value()
+                    value_b=us_int.get_value()
+                elif welcome==2:
+                    compl_values=us_int.get_complex_value()
+                    value_a=compl_values[0]
+                    value_b=compl_values[1]
+                model.init(value_a, value_b)
+                result=model.do_it(d)
+                sym=model.symb(d)
+                us_int.view_data(result, 'result')
+                l.result_logger(value_a,value_b,sym,result)
+            else: button_click()
+    else:
+        print("Wrong values, please try again")
+        exit()
+button_click1()
