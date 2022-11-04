@@ -36,16 +36,25 @@ def ch_div_op():
     dict_div=dict([(1,'/'),(2,'//'),(3,'%')])
     return dict_div.get(operation1)
 
+# def get_complex_value():
+#     real_part1=int(input('Enter 1 real part: '))
+#     im_part1=int(input('Enter 1 imaginary part: '))
+#     real_part2=int(input('Enter 2 real part: '))
+#     im_part2=int(input('Enter 2 imaginary part: '))
+#     print(f"value 1= {complex(real_part1,im_part1)}")
+#     print(f"value 2= {complex(real_part2,im_part2)}")
+#     return real_part1,im_part1,real_part2,im_part2
+
 def get_complex_value():
     real_part1=int(input('Enter 1 real part: '))
     im_part1=int(input('Enter 1 imaginary part: '))
     real_part2=int(input('Enter 2 real part: '))
     im_part2=int(input('Enter 2 imaginary part: '))
-    print(f"value 1= {complex(real_part1,im_part1)}")
-    print(f"value 2= {complex(real_part2,im_part2)}")
-    return real_part1,im_part1,real_part2,im_part2
-
-    
+    value1= complex(real_part1,im_part1)
+    value2= complex(real_part2,im_part2)
+    print(f"value 1= {value1}")
+    print(f"value 2= {value2}")
+    return [value1, value2]
 
 
 

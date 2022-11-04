@@ -34,17 +34,31 @@ def get_complex_value():
     print(f"value 1= {complex(real_part1,im_part1)}")
     print(f"value 2= {complex(real_part2,im_part2)}")
     return real_part1,im_part1,real_part2,im_part2
-CV=get_complex_value()
-# print(CV)
-# print(CV[2])
-value1=init(CV[0],CV[1],CV[2],CV[3])[0]
-value2=init(CV[0],CV[1],CV[2],CV[3])[1]
+# CV=get_complex_value()
+# # print(CV)
+# # print(CV[2])
+# value1=init(CV[0],CV[1],CV[2],CV[3])[0]
+# value2=init(CV[0],CV[1],CV[2],CV[3])[1]
 # print(init(CV[0],CV[1],CV[2],CV[3])[0])
 
-print(value1)
-print(value2)
+# print(value1)
+# print(value2)
 
 def do_it():
     return x+y
 
-print(do_it())
+# print(do_it())
+
+def get_complex_value1():
+    real_part1=int(input('Enter 1 real part: '))
+    im_part1=int(input('Enter 1 imaginary part: '))
+    real_part2=int(input('Enter 2 real part: '))
+    im_part2=int(input('Enter 2 imaginary part: '))
+    value1= complex(real_part1,im_part1)
+    value2= complex(real_part2,im_part2)
+    print(f"value 1= {value1}")
+    print(f"value 2= {value2}")
+    return [value1, value2]
+
+value_a=get_complex_value1()[0]
+print((value_a))

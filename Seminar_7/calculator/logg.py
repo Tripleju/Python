@@ -6,3 +6,5 @@ def result_logger(value_a, value_b,symbol,result):
     with open('log_calc.txt', 'a') as file:
         file.write('data: {}; calculation: {} {} {}= {}\n'
                     .format(time,value_a,symbol,value_b,result))
+
+

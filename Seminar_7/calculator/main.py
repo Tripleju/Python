@@ -40,13 +40,13 @@ def button_click():
             else:
                 d=''
             compl_values=us_int.get_complex_value()
-            # value_a=model.init_complex(compl_values[0],compl_values[1],compl_values[2],compl_values[3])[0]
-            # value_b=model.init_complex(compl_values[0],compl_values[1],compl_values[2],compl_values[3])[1]
-            model.init_complex(compl_values[0],compl_values[1],compl_values[2],compl_values[3])
+            value_a=compl_values[0]
+            value_b=compl_values[1]
+            model.init(value_a, value_b)
             result=model.do_it(d)
             sym=model.symb(d)
             us_int.view_data(result, 'result')
-            # l.result_logger(value_a,value_b,sym,result)
+            l.result_logger(value_a,value_b,sym,result)
         else: button_click()
     else:
         print("Wrong values")
