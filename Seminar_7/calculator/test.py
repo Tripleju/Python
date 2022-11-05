@@ -60,5 +60,16 @@ def get_complex_value1():
     print(f"value 2= {value2}")
     return [value1, value2]
 
-value_a=get_complex_value1()[0]
-print((value_a))
+# value_a=get_complex_value1()[0]
+# print((value_a))
+
+# a='2.7.0'
+# b=a.replace('.','',1)
+# print(b)
+# print(a.isdigit())
+# print(b.isdigit())
+
+dict_models=dict([(1,model_sum),(2,'model_sub'),(3,model_mult),(4,"model_div"),(5,"model_pow"),(6,"model_sqrt"),(7,"break")])
+
+print(7 in range(len(dict_models)+1))
+
