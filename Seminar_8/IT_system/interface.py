@@ -8,5 +8,5 @@ def input_data():
 
 
 def welcome():
-    option=int(input("Hello! what do you like to do now?\n Choose the option:\n 1 - look to the data\n 2 - filter data\n 3 - exit\n "))
+    option=int(input("Hello! what do you like to do now?\n Choose the option:\n 1 - look to the data\n 2 - filter data\n 3 - input new data\n 4 - exit\n "))
     return option
