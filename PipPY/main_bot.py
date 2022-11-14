@@ -4,7 +4,7 @@ from bot_commands import *
 from spy import *
 
 
-updater = Updater("5798233180:AAE1QkxOkra9SaNSjleonf6OtUQvRWWWlGo")
+updater = Updater("token")
 
 updater.dispatcher.add_handler(CommandHandler("hi", hi_command))
 updater.dispatcher.add_handler(CommandHandler("time", time_command))
