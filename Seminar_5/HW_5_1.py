@@ -17,26 +17,40 @@ out
 The data is incorrect """
 
 from random import sample
+# def create_first_str(num:int, word):
+#     if num<=0:
+#         print('The data is incorrect')
+#         return ''
+#     first_list=[]
+#     for i in range(num):
+#         a=sample(word,k=3)
+#         first_list.append(''.join(a))
+#         first_str=" ".join(first_list)
+#     return first_str
+
+#короткая версия записи
 def create_first_str(num:int, word):
     if num<=0:
         print('The data is incorrect')
         return ''
-    first_list=[]
-    for i in range(num):
-        a=sample(word,k=3)
-        first_list.append(''.join(a))
-        first_str=" ".join(first_list)
-    return first_str
+    return " ".join(''.join(sample(word,k=3)) for _ in range(num))
+
 
 first_string=create_first_str(int(input("Введите количество элементов списка: ")),'абв')
 print(first_string)
 
+# def delete_word(word:str, my_string:str):
+#     if my_string=='':
+#         return ''
+#     final_list=[x for x in my_string.split() if x != word]
+#     final_str=" ".join(final_list)
+#     return final_str
+
+#короткая версия записи
 def delete_word(word:str, my_string:str):
     if my_string=='':
         return ''
-    final_list=[x for x in my_string.split() if x != word]
-    final_str=" ".join(final_list)
-    return final_str
+    return " ".join(x for x in my_string.split() if x != word)
 
 print(delete_word('абв', first_string))
 
