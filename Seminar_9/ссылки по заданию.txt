@@ -1,0 +1,11 @@
+с лекцией разобралась
+https://github.com/Tripleju/Python/tree/main/Lessons/Lec_6/test_bot
+
+здесь добавлен вопрос про возраст в основной бот с обработчиком вариантов ответа
+https://github.com/Tripleju/Python/blob/main/Seminar_9/main_bot_updated.py
+
+здесь сделала игру крестики-нолики без бота из задания к семинару 5
+https://github.com/Tripleju/Python/blob/main/Seminar_5/HW_5_3.py
+
+здесь прикручиваю бота к крестикам-ноликам (пока в процессе)
+https://github.com/Tripleju/Python/blob/main/Seminar_9/game_XO_bot.py

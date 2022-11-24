@@ -1,4 +1,30 @@
+import logging
 
+from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove, Update
+from telegram.ext import (
+    Updater,
+    CommandHandler,
+    MessageHandler,
+    Filters,
+    ConversationHandler,
+)
+from bot_tokens import tokens
+
+# logging.basicConfig(
+# level=logging.DEBUG,
+# filename="my_log.log",
+# format="%(asctime)s - %(module)s - %(levelname)s - %(funcName)s - %(message)s",
+# datefmt='%d-%m-%Y %H:%M:%S',
+# )
+
+# Включим ведение журнала
+logging.basicConfig(
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO
+)
+logger = logging.getLogger(__name__)
+
+# Определяем константы этапов разговора
+BOARD, INPUTS, CHECK, MAIN = range(5)
 
 board = list(range(1,10))
 
@@ -7,12 +33,6 @@ def draw_board(board):
     for i in range(3):
         print("|", board[0+i*3],"|", board[1+i*3],"|",  board[2+i*3],"|")
         print('-------------')
-
-draw_board(board)
-
-def step_maps(step,symbol):
-    ind = board.index(step)
-    board[ind] = symbol
 
 def take_input(player_token):
     valid = False
@@ -62,4 +82,35 @@ def main(board):
             break
     draw_board(board)
 
-main(board)
+# main(board)
+
+if __name__ == '__main__':
+    # Создаем Updater и передаем ему токен вашего бота.
+    updater = Updater(tokens.token_2)
+    # получаем диспетчера для регистрации обработчиков
+    dispatcher = updater.dispatcher
+
+    # Определяем обработчик разговоров `ConversationHandler` 
+    # с состояниями GENDER, PHOTO, LOCATION и BIO
+    conv_handler = ConversationHandler( # здесь строится логика разговора
+        # точка входа в разговор
+        entry_points=[CommandHandler('start', start)],
+        # этапы разговора, каждый со своим списком обработчиков сообщений
+        states={
+            BOARD: [MessageHandler(Filters.regex(), draw_board)],
+            INPUTS: [MessageHandler(Filters.text & ~Filters.command, take_input)],
+            CHECK: [MessageHandler(Filters.photo,check_win)],
+            
+            MAIN: [MessageHandler(Filters.text & ~Filters.command, bio)],
+        },
+        # точка выхода из разговора
+        fallbacks=[CommandHandler('cancel', cancel)],
+    )
+
+    # Добавляем обработчик разговоров `conv_handler`
+    dispatcher.add_handler(conv_handler)
+
+    # Запуск бота
+    print('server start')
+    updater.start_polling()
+    updater.idle()
