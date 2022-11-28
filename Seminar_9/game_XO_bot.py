@@ -47,6 +47,7 @@ def draw_board(board):
 # функция обратного вызова точки входа в разговор
 def start(update,_):
     global counter, win, X, O
+    board = list(range(1,10))
     update.message.reply_text("Привет! давай поиграем в крестики-нолики!\n Команда /cancel, если захочешь выйти из игры.")
     update.message.reply_text(draw_board(board))
     update.message.reply_text("Куда поставим " + X+"? ")
@@ -69,9 +70,10 @@ def main(update, _):
                 if counter > 3:
                     tmp = check_win(board)
                     if tmp:
-                        update.message.reply_text(f'{tmp} выиграл! {chr(129395)}')
-                              
+                        update.message.reply_text(f'{tmp} выиграл! {chr(129395)}')      
+                        # cancel(update, _)
                         return ConversationHandler.END
+
                 if counter % 2 == 0:
                     player_token=O
                 else:
@@ -83,6 +85,7 @@ def main(update, _):
             update.message.reply_text("Куда поставим " + player_token+"? ")
         elif counter == 9:
             update.message.reply_text(f"{chr(129309)} Ничья!")
+            # cancel(update, _)
             return ConversationHandler.END
 
     except:
