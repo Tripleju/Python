@@ -24,48 +24,38 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # Определяем константы этапов разговора
-BOARD, INPUTS, CHECK, MAIN = range(5)
+INPUTS=0
 
 board = list(range(1,10))
+counter = 0
+win = False
+X=chr(10060)
+O=chr(11093)
+valid = False
 
 def draw_board(board):
-    print('-------------')
-    for i in range(3):
-        print("|", board[0+i*3],"|", board[1+i*3],"|",  board[2+i*3],"|")
-        print('-------------')
+    txt = ''
+    for i in range(len(board)):
+        if not i % 3:
+            txt += f'\n{"-" * 25}\n'
+        txt += f'{board[i]:^8}'
+    txt += f"\n{'-' * 25}"
+    return txt
 
-def take_input(player_token):
-    valid = False
-    while not valid:
-        player_answer = input("Куда поставим " + player_token+"? ")
-        try:
-            player_answer = int(player_answer)
-        except:
-            print(f"{chr(9940)} Некорректный ввод. Вы уверены, что ввели число?")
-            continue
-        if player_answer >= 1 and player_answer <= 9:
-            if str(board[player_answer-1]).isdigit():
-                board[player_answer-1]=player_token
-                valid = True
-            else:
-                print(f"{chr(10071)} Эта клеточка уже занята")
-        else:
-            print(f"{chr(9940)} Некорректный ввод. Введите число от 1 до 9 чтобы походить.")
 
-def check_win(board):
-    win_coord = ((0,1,2),(3,4,5),(6,7,8),(0,3,6),(1,4,7),(2,5,8),(0,4,8),(2,4,6))
-    for each in win_coord:
-        if board[each[0]] == board[each[1]] == board[each[2]]:
-            return board[each[0]]
-    return False   
+def start(update,_):
+    global counter, win, X, O
+    # win = False
+    # X=chr(10060)
+    # O=chr(11093)
+    update.message.reply_text("Привет! давай поиграем в крестики-нолики")
+    update.message.reply_text(draw_board(board))
+    return INPUTS
 
-def main(board):
-    counter = 0
-    win = False
-    X=chr(10060)
-    O=chr(11093)
+def main(update, _):
+    global win, counter
     while not win:
-        draw_board(board)
+        
         if counter % 2 == 0:
             take_input(X)
         else:
@@ -74,15 +64,45 @@ def main(board):
         if counter > 4:
             tmp = check_win(board)
             if tmp:
-                print(f'{tmp} выиграл! {chr(129395)}')
+                update.message.reply_text(f'{tmp} выиграл! {chr(129395)}')
                 win = True
                 break
         if counter == 9:
-            print(f"{chr(129309)} Ничья!")
+            update.message.reply_text(f"{chr(129309)} Ничья!")
             break
-    draw_board(board)
+    update.message.reply_text(draw_board(board))
 
-# main(board)
+def take_input(update, player_token, _):
+    global valid
+    while not valid:
+        update.message.reply_text("Куда поставим " + player_token+"? ")
+        player_answer = update.message.text
+        try:
+            player_answer = int(player_answer)
+        except:
+            update.message.reply_text(f"{chr(9940)} Некорректный ввод. Вы уверены, что ввели число?")
+            continue
+        if player_answer >= 1 and player_answer <= 9:
+            if str(board[player_answer-1]).isdigit():
+                board[player_answer-1]=player_token
+                valid = True
+            else:
+                update.message.reply_text(f"{chr(10071)} Эта клеточка уже занята")
+        else:
+            update.message.reply_text(f"{chr(9940)} Некорректный ввод. Введите число от 1 до 9 чтобы походить.")
+
+def check_win(board):
+    win_coord = ((0,1,2),(3,4,5),(6,7,8),(0,3,6),(1,4,7),(2,5,8),(0,4,8),(2,4,6))
+    for each in win_coord:
+        if board[each[0]] == board[each[1]] == board[each[2]]:
+            return board[each[0]]
+    return False   
+
+
+def cancel(update, _):
+    update.message.reply_text('До связи!', reply_markup=ReplyKeyboardRemove())
+    return ConversationHandler.END
+
 
 if __name__ == '__main__':
     # Создаем Updater и передаем ему токен вашего бота.
@@ -97,11 +117,7 @@ if __name__ == '__main__':
         entry_points=[CommandHandler('start', start)],
         # этапы разговора, каждый со своим списком обработчиков сообщений
         states={
-            BOARD: [MessageHandler(Filters.regex(), draw_board)],
-            INPUTS: [MessageHandler(Filters.text & ~Filters.command, take_input)],
-            CHECK: [MessageHandler(Filters.photo,check_win)],
-            
-            MAIN: [MessageHandler(Filters.text & ~Filters.command, bio)],
+            INPUTS: [MessageHandler(Filters.text, main, take_input)],
         },
         # точка выхода из разговора
         fallbacks=[CommandHandler('cancel', cancel)],
