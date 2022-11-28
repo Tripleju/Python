@@ -70,7 +70,7 @@ def main(update, _):
                 if counter > 3:
                     tmp = check_win(board)
                     if tmp:
-                        update.message.reply_text(f'{tmp} выиграл! {chr(129395)}')      
+                        update.message.reply_text(f'{tmp} выиграл! {chr(129395)}\n Команда /start что бы начать игру заново!')      
                         # cancel(update, _)
                         return ConversationHandler.END
 
@@ -84,7 +84,7 @@ def main(update, _):
         if counter < 9:
             update.message.reply_text("Куда поставим " + player_token+"? ")
         elif counter == 9:
-            update.message.reply_text(f"{chr(129309)} Ничья!")
+            update.message.reply_text(f"{chr(129309)} Ничья!\n Команда /start что бы начать игру заново!")
             # cancel(update, _)
             return ConversationHandler.END
 
@@ -122,7 +122,7 @@ if __name__ == '__main__':
         entry_points=[CommandHandler('start', start)],
         # этапы разговора, каждый со своим списком обработчиков сообщений
         states={
-            INPUTS: [MessageHandler(Filters.text, main),CommandHandler('cancel', cancel)]
+            INPUTS: [MessageHandler(Filters.text, main),CommandHandler('cancel', cancel), CommandHandler('start', start)]
         },
         # точка выхода из разговора
         fallbacks=[CommandHandler('cancel', cancel)],
